@@ -40,26 +40,14 @@ public class shayGrandSuccess extends AppCompatActivity {
             }
         });
 
-        public void onPause(){
-            if(t1 !=null){
-                t1.stop();
-                t1.shutdown();
-            }
-            super.onPause();
-        }
-    }
-
-
-
-
-        EditText write;
-        TextToSpeech tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-            }
-        });
-        tts.setLanguage(Locale.US);
-        tts.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+//        public void onPause()
+//    {
+//            if(t1 !=null){
+//                t1.stop();
+//                t1.shutdown();
+//            }
+//            super.onPause();
+//        }
 
     }
 }

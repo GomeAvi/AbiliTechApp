@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class); // replace "SecondActivity" with the name of your second activity
+                Intent intent = new Intent(MainActivity.this, shayGrandSuccess.class); // replace "SecondActivity" with the name of your second activity
                 startActivity(intent);
             }
         });
