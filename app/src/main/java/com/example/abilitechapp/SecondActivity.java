@@ -7,19 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.StartButton); // replace "button" with the ID of your button
+        setContentView(R.layout.activity_second);
+        Button button = findViewById(R.id.BackButton); // replace "button" with the ID of your button
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class); // replace "SecondActivity" with the name of your second activity
+                Intent intent = new Intent(SecondActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
