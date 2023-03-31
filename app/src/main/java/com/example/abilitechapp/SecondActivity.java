@@ -3,6 +3,9 @@ package com.example.abilitechapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -15,6 +18,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.view.animation.AlphaAnimation;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+
+
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -23,15 +30,17 @@ public class SecondActivity extends AppCompatActivity {
     private Button Lvl1Button, Lvl2Button, Lvl3Button, Lvl4Button, BigButton, BigButtonNext;
     private ImageView LineObject;
     private TextView t1;
+    private TextView progressText;
+    private int lvlPrecentge = 50;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        TextView progressText = findViewById(R.id.progressText);
         ProgressBar progressBar = findViewById(R.id.progressBar);
-        progressBar.setMax(100);
-        progressBar.setProgress(50);
 
         Lvl1Button = findViewById(R.id.Lvl1Button);
         Lvl2Button = findViewById(R.id.lvl2Button);
@@ -44,6 +53,17 @@ public class SecondActivity extends AppCompatActivity {
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE); // Initialize vibrator object
 
+        if(Level1_miniLevel3.levelComplteFlag)
+        {
+            lvlPrecentge += 25;
+            progressBar.setProgress(lvlPrecentge);
+            progressText.setText(lvlPrecentge+"%");
+            int color = Color.parseColor("#00CC99");
+            Lvl3Button.setBackgroundTintList(ColorStateList.valueOf(color));
+
+
+
+        }
         // Set the onClickListener for the button
         BigButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +87,12 @@ public class SecondActivity extends AppCompatActivity {
                     LineObject.startAnimation(fadeIn);
                     Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
                     BigButtonNext.startAnimation(animation);
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressText.setVisibility(View.VISIBLE);
+                    progressText.setText(lvlPrecentge+"%");
+                    progressText.startAnimation(fadeIn);
+                    progressBar.startAnimation(fadeIn);
+                    progressBar.setProgress(lvlPrecentge);
 
 
                 } else {
@@ -86,6 +112,11 @@ public class SecondActivity extends AppCompatActivity {
                     Lvl3Button.setVisibility(View.INVISIBLE);
                     Lvl4Button.setVisibility(View.INVISIBLE);
                     LineObject.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBar.startAnimation(fadeOut);
+                    progressText.startAnimation(fadeOut);
+                    progressText.setVisibility(View.INVISIBLE);
+
 
 
                 }
@@ -99,6 +130,16 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Replace "myTextView" with the ID of your TextView element
 
+            }
+        });
+
+        Lvl3Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Replace "myTextView" with the ID of your TextView element
+
+                Intent intent = new Intent(SecondActivity.this, Level1_miniLevel3.class);
+                startActivity(intent);
             }
         });
 

@@ -13,7 +13,7 @@
         android:layout_width="79dp"
         android:layout_height="49dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#D328528C"
         android:contentDescription="@string/app_name"
@@ -25,15 +25,16 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="231dp"
+        android:layout_width="220dp"
         android:layout_height="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:background="#002D658B"
+        android:indeterminate="false"
         android:max="100"
-        android:indeterminateDrawable="@drawable/progressbar_coreners"
         android:progressTint="#4AB5D5"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +89,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_corner_level"
-        android:backgroundTint="#00CC99"
+        android:backgroundTint="#4AB5D5"
         android:fontFamily="@font/baloo"
         android:text="3"
         android:textColor="#EFEFEF"
@@ -140,13 +141,27 @@
         android:layout_marginBottom="516dp"
         android:background="@drawable/rounded_corner_level"
         android:backgroundTint="#FFFFFF"
-        android:textColor="#505050"
         android:fontFamily="@font/baloo"
+        android:text="Level 2 - Basic sentences"
+        android:textColor="#505050"
+        android:textColorHint="#3A3A3A"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Level 2 - More Words"
-        android:textColorHint="#3A3A3A"
-        android:textSize="28sp"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/baloo"
+        android:textColor="#4AB5D5"
+        android:textSize="22sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
