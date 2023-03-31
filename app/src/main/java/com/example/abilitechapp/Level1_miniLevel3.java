@@ -1,13 +1,20 @@
 package com.example.abilitechapp;
 
+import com.example.abilitechapp.Algorithm;
+import com.example.abilitechapp.ColoringData;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.speech.RecognizerIntent;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -17,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -38,12 +46,13 @@ public class Level1_miniLevel3 extends AppCompatActivity {
     int count = 0;
     private int lvlPrecentge = 0;
     public static boolean levelComplteFlag = false;
+    ArrayList<String> wordList = new ArrayList<String>();
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1_mini_level3);
-        ArrayList<String> wordList = new ArrayList<String>();
+
         wordList.add("Mom");
         wordList.add("Dad");
         wordList.add("Brother");
@@ -109,6 +118,7 @@ public class Level1_miniLevel3 extends AppCompatActivity {
                     NextButton.setVisibility(View.INVISIBLE);
                     progressBar.setProgress(lvlPrecentge);
                     progressText.setText(lvlPrecentge + "%");
+                    myTextTv.setVisibility(View.INVISIBLE);
 
                 } else {
                     wordText.setVisibility(View.INVISIBLE);
@@ -159,7 +169,44 @@ public class Level1_miniLevel3 extends AppCompatActivity {
                 case REQUEST_CODE_SPEECH_INPUT: {
                     if (resultCode == RESULT_OK && null != data) {
                         ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                        myTextTv.setText(result.get(0));
+                        String resultStr = result.get(0);
+                        myTextTv.setVisibility(View.VISIBLE);
+                        myTextTv.setText(resultStr);
+                        ArrayList<Integer> accuracy;
+                        try {
+                            accuracy = Algorithm.getAccuracy(Algorithm.BinSearch(getBaseContext(), "cmudict.txt", wordList.get(count)), Algorithm.BinSearch(getBaseContext(), "cmudict.txt", resultStr));  // shurat hamahatz
+                        }
+                        catch(IOException e){
+                            throw new RuntimeException(e);
+                        }
+                        ArrayList<Integer> indexColors = ColoringData.getSyllablesFamily(wordList.get(count));
+                        SpannableStringBuilder builder = new SpannableStringBuilder();
+                        String str;
+                        for(int i=0; i<accuracy.size(); i++){
+                            if (i < accuracy.size()-1)
+                                str = wordList.get(count).substring(indexColors.get(i), indexColors.get(i+1));
+                            else {
+                                str = wordList.get(count).substring(indexColors.get(i));
+                            }
+                            SpannableString spannableString = new SpannableString(str);
+
+                            switch(accuracy.get(i)){
+                                case 0:
+                                    spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, str.length(), 0);
+                                    break;
+                                case 1:
+                                    spannableString.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, str.length(), 0);
+                                    break;
+                                case 2:
+                                    spannableString.setSpan(new ForegroundColorSpan(Color.GREEN), 0, str.length(), 0);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            builder.append(spannableString);
+                        }
+                        wordText.setText(builder, TextView.BufferType.SPANNABLE);
+
                     }
                     if (!levelComplteFlag) {
                         NextButton.setVisibility(View.VISIBLE);

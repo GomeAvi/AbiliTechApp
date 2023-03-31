@@ -6,12 +6,14 @@ public class ColoringData {
     String[] family = new String[] {
             "mom", "dad", "brother", "sister", "love"
     };
-    public ArrayList<Integer> getSyllablesFamily(String word) {
+    public static ArrayList<Integer> getSyllablesFamily(String word) {
         ArrayList<Integer> output = new ArrayList<>();
+        word = word.toLowerCase();
         switch (word) {
             case "mom":
             case "dad":
             case "love":
+            case "more":
                 output.addAll(List.of(0,1,2));
                 break;
             case "brother":
@@ -19,19 +21,6 @@ public class ColoringData {
                 break;
             case "sister":
                 output.addAll(List.of(0,1,2,3,4));
-                break;
-            default:
-                // Handle unknown words here
-                break;
-        }
-        return output;
-    }
-
-    public ArrayList<Integer> getSyllablesFood(String word) {
-        ArrayList<Integer> output = new ArrayList<>();
-        switch (word) {
-            case "more":
-                output.addAll(List.of(0,1, 2));
                 break;
             case "eating":
                 output.addAll(List.of(0,2,3,4));

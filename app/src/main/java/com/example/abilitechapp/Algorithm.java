@@ -1,6 +1,7 @@
 package com.example.abilitechapp;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Algorithm {
@@ -23,31 +25,53 @@ public class Algorithm {
     public static final int YELLOW = 1;
     public static final int GREEN = 2;
     public static final int SIZE_OF_PON = 2;
-    public static ArrayList<String> readAssetFile(Context context, String fileName, String word) {
-        ArrayList<String> phonemes = new ArrayList<String>();
+    public static ArrayList<String> BinSearch(Context context, String assetFileName,String word) throws IOException {
+        word = word.toLowerCase();
+        InputStream inputStream = context.getAssets().open(assetFileName);
+        long fileSize = inputStream.available();
 
-        AssetManager assetManager = context.getAssets();
-        try {
-
-            InputStream inputStream = assetManager.open(fileName);
-            Scanner scanner = new Scanner(inputStream);
-            String line;
-            String[] phonemesArr;
-            while (scanner.hasNextLine()) {
-                line = scanner.nextLine();
-                String cur_word = line.substring(0, line.indexOf(' '));
-                if (cur_word.equals(word)) {
-                    phonemesArr = line.substring(line.indexOf(" ")).split(" ");
-                    phonemes = new ArrayList<>(Arrays.asList(phonemesArr));
-                    break;
-                }
+        // Perform binary search for a line
+        long left = 0;
+        long right = fileSize - 1;
+        long middle = 0;
+        while (left <= right) {
+            middle = (left + right) / 2;
+            inputStream.reset();
+            inputStream.skip(middle); // Move the input stream pointer to the middle position
+            readPartialLine(inputStream); // Read partial line to move input stream pointer to start of line
+            String currentLine = readLine(inputStream); // Read the full line
+            String cur_word = currentLine.substring(0, currentLine.indexOf(' '));
+            if (cur_word.equals(word)) {
+                // Line found
+                System.out.println("Found line " + word + " at position " + middle);
+                inputStream.close();
+                return new ArrayList<String>(Arrays.asList(currentLine.substring(currentLine.indexOf(' ')).trim().split(" ")));
+            } else if (cur_word.compareTo(word) < 0) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
             }
-            scanner.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return phonemes;
+
+        // Line not found
+        System.out.println("Line " + word + " not found in file");
+        inputStream.close();
+        return new ArrayList<>();
+    }
+
+    // Read a partial line from the input stream to move the pointer to the start of the current line
+    private static void readPartialLine(InputStream inputStream) throws IOException {
+        while (inputStream.read() != '\n') ;
+    }
+
+    // Read a full line from the input stream
+    private static String readLine(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        int c;
+        while ((c = inputStream.read()) != -1 && c != '\n') {
+            byteArrayOutputStream.write(c);
+        }
+        return byteArrayOutputStream.toString();
     }
 
     public static ArrayList<Integer> getAccuracy(ArrayList<String> word, ArrayList<String> userTry){

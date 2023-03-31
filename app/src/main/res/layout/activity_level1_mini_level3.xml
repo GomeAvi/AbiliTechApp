@@ -94,13 +94,17 @@
 
     <TextView
         android:id="@+id/tv_speech_to_text"
-        android:layout_width="201dp"
-        android:layout_height="48dp"
+        android:layout_width="205dp"
+        android:layout_height="87dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/baloo"
+        android:gravity="center"
         android:padding="10dp"
-        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textSize="42sp"
         app:layout_constraintBottom_toTopOf="@+id/iv_mic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
