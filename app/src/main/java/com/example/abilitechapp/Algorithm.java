@@ -30,7 +30,6 @@ public class Algorithm {
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 String cur_word = line.substring(0, line.indexOf(' '));
-                System.out.println(line);
                 if (cur_word.equals(word)) {
                     phonemesArr = line.substring(line.indexOf(" ")).split(" ");
                     phonemes = new ArrayList<>(Arrays.asList(phonemesArr));
