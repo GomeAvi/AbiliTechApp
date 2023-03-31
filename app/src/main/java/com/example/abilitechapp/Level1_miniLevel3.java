@@ -169,7 +169,7 @@ public class Level1_miniLevel3 extends AppCompatActivity {
                 case REQUEST_CODE_SPEECH_INPUT: {
                     if (resultCode == RESULT_OK && null != data) {
                         ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                        String resultStr = result.get(0);
+                        String resultStr = result.get(0).split(" ")[0];
                         myTextTv.setVisibility(View.VISIBLE);
                         myTextTv.setText(resultStr);
                         ArrayList<Integer> accuracy;
