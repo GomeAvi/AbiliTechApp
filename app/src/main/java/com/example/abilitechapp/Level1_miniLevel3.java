@@ -45,14 +45,14 @@ public class Level1_miniLevel3 extends AppCompatActivity {
 
     int count = 0;
     private int lvlPrecentge = 0;
-    public static boolean levelComplteFlag = false;
+    public static boolean levelComplteFlag;
     ArrayList<String> wordList = new ArrayList<String>();
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1_mini_level3);
-
+        levelComplteFlag = false;
         wordList.add("Mom");
         wordList.add("Dad");
         wordList.add("Brother");
@@ -111,7 +111,7 @@ public class Level1_miniLevel3 extends AppCompatActivity {
                 if (count < 10) {
                     wordText.setText(wordList.get(count));
                     AlphaAnimation fadeOut = new AlphaAnimation(1, 0);
-                    fadeOut.setDuration(1000);
+                    fadeOut.setDuration(500);
                     fadeOut.setFillBefore(true);
                     fadeOut.setFillAfter(false);
                     NextButton.startAnimation(fadeOut);
