@@ -7,70 +7,161 @@
     android:background="#1A3B68"
     tools:context=".SecondActivity">
 
-    <Button
-        android:id="@+id/StartButton"
-        android:layout_width="80dp"
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BackButton"
+        android:layout_width="79dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#D328528C"
+        android:contentDescription="@string/app_name"
+        android:text="Back"
+        android:textColorHint="#00BCD4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="220dp"
         android:layout_height="80dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginTop="4dp"
+        android:background="#002D658B"
+        android:indeterminate="false"
+        android:max="100"
+        android:progressTint="#4AB5D5"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Line"
+        android:layout_width="137dp"
+        android:layout_height="572dp"
+        android:layout_marginTop="188dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/line" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lvl2Button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="372dp"
+        android:background="@drawable/rounded_corner_level"
+        android:backgroundTint="#00CC99"
+        android:fontFamily="@font/baloo"
+        android:text="2"
+        android:textColor="#EFEFEF"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toEndOf="@+id/Lvl1Button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Lvl1Button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="272dp"
         android:background="@drawable/rounded_corner_level"
         android:backgroundTint="#00CC99"
         android:fontFamily="@font/baloo"
         android:text="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#EFEFEF"
         android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lvl3Button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corner_level"
+        android:backgroundTint="#4AB5D5"
+        android:fontFamily="@font/baloo"
+        android:text="3"
+        android:textColor="#EFEFEF"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvl2Button" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lvl4Button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/rounded_corner_level"
+        android:backgroundTint="#4AB5D5"
+        android:fontFamily="@font/baloo"
+        android:text="4"
+        android:textColor="#EFEFEF"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toEndOf="@+id/lvl3Button"
+        app:layout_constraintTop_toBottomOf="@+id/lvl2Button" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lvlButtonBig"
+        android:layout_width="387dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_corner_level"
+
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/baloo"
+        android:text="Level 1 - Basic Words"
+        android:textColor="#505050"
+        android:textColorHint="#3A3A3A"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BackButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lvlButtonBigNext"
+        android:layout_width="387dp"
+        android:layout_height="103dp"
+        android:layout_marginBottom="516dp"
+        android:background="@drawable/rounded_corner_level"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/baloo"
+        android:text="Level 2 - Basic sentences"
+        android:textColor="#505050"
+        android:textColorHint="#3A3A3A"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="232dp"
-        android:background="@drawable/rounded_corner_level"
-        android:backgroundTint="#00CC99"
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:fontFamily="@font/baloo"
-        android:text="2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#4AB5D5"
+        android:textSize="22sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toEndOf="@+id/StartButton"
-        tools:ignore="DuplicateClickableBoundsCheck" />
-
-    <Button
-        android:id="@+id/startButton2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="232dp"
-        android:background="@drawable/rounded_corner_level"
-        android:backgroundTint="#00CC99"
-        android:fontFamily="@font/baloo"
-        android:text="2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toEndOf="@+id/StartButton" />
-
-    <Button
-        android:id="@+id/BackButton"
-        android:layout_width="79dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:drawableBottom="?attr/actionModeCloseDrawable"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
