@@ -17,8 +17,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Algorithm {
-    static final String DICT_PATH = "C:\\Users\\ofir\\StudioProjects\\AbiliTechApp\\app\\src\\main\\assets\\cmudict.txt";
-
     public static ArrayList<String> readAssetFile(Context context, String fileName, String word) {
         ArrayList<String> phonemes = new ArrayList<String>();
 
@@ -31,7 +29,6 @@ public class Algorithm {
             String[] phonemesArr;
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
-                //while ((line = bufferedReader.readLine()) != null) {
                 String cur_word = line.substring(0, line.indexOf(' '));
                 System.out.println(line);
                 if (cur_word.equals(word)) {
@@ -48,17 +45,4 @@ public class Algorithm {
         return phonemes;
     }
 
-    // get phonemes Array of a given word
-    private static ArrayList<String> getVowels(String word) {
-        try (BufferedReader br = new BufferedReader(new FileReader(DICT_PATH))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
-        }
-        ArrayList<String> answer = new ArrayList<>();
-        return answer;
-    }
 }
